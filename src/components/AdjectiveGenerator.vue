@@ -1,12 +1,13 @@
 <template>
-  <div class="rhymesaurus">
+  <div class="adjective-generator">
     <p> 
-      <router-link :to="{ name: 'AdjectiveGenerator' }">Adjective Generator</router-link>
+      <router-link v-bind:to="{ name: 'AdjectiveGenerator'}">Adjective Generator</router-link>
       &bull;
-      <router-link :to="{ name: 'Rhymesaurus' }">Rhymesaurus</router-link>
-     </p> 
+      <router-link v-bind:to="{ name: 'Rhymesaurus' }">Rhymesaurus</router-link>
+    </p> 
     <form v-on:submit.prevent="findWords">
-      <p>Find rhymes for <input type="text" v-model="rhyme"> related to <input type="text" v-model="phrase"> <button type="submit">Search</button></p>
+     <p>Find adjectives for any noun!</p> 
+     <p> <input type="text" v-model="adjective"><button type="submit">Search</button></p>
     </form>
     <ul v-if="results && results.length > 0 " class="results">
       <li v-for="item in results" class="item">
@@ -32,21 +33,21 @@
 import axios from 'axios';
 
 export default {
-  name: 'Rhymesaurus',
+  name: 'AdjectiveGenerator',
   data () {
     return {
       results: null,
       errors: [],
       phrase: '',
-      rhyme: ''
+      adjective: ''
     }
   },
     methods: {
       findWords: function (){
-        axios.get('https://api.datamuse.com/words', {
+        axios.get('https://api.datamuse.com/words?rel_jjb=car', {
           params: {
-            ml: this.phrase,
-            rel_rhy: this.rhyme,
+            rel_jjb: this.adjective,
+            
           }
         })
         .then( response => {
@@ -62,7 +63,7 @@ export default {
 
 <!-- Added "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.rhymesaurus {
+.adjective-generator {
   font-size: 1.4rem;
 }
 

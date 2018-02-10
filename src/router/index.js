@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Rhymesaurus from '@/components/Rhymesaurus'
-// TODO: Import new component
+import AdjectiveGenerator from '@/components/AdjectiveGenerator'
 
 Vue.use(Router)
 
@@ -11,7 +11,11 @@ export default new Router({
       path: '/',
       name: 'Rhymesaurus',
       component: Rhymesaurus
+    },
+    {
+      path: '/adjective-generator',
+      name: 'AdjectiveGenerator',
+      component: AdjectiveGenerator
     }
-    // TODO: Add new route definition here.
   ]
 })
